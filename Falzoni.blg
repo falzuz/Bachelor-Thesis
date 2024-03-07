@@ -1,0 +1,17 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[1] Config.pm:310> INFO - Logfile is 'Falzoni.blg'
+[137] biber:340> INFO - === mer ott 19, 2022, 14:57:23
+[165] Biber.pm:418> INFO - Reading 'Falzoni.bcf'
+[265] Biber.pm:969> INFO - Using all citekeys in bib section 0
+[288] Biber.pm:4383> INFO - Processing section 0
+[304] Biber.pm:4574> INFO - Looking for bibtex file 'bibliography.bib' for section 0
+[306] bibtex.pm:1713> INFO - LaTeX decoding ...
+[320] bibtex.pm:1518> INFO - Found BibTeX data source 'bibliography.bib'
+[427] UCollate.pm:68> INFO - Overriding locale 'it-IT' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[427] UCollate.pm:68> INFO - Overriding locale 'it-IT' defaults 'variable = shifted' with 'variable = non-ignorable'
+[428] Biber.pm:4203> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'it-IT'
+[428] Biber.pm:4209> INFO - No sort tailoring available for locale 'it-IT'
+[446] bbl.pm:654> INFO - Writing 'Falzoni.bbl' with encoding 'UTF-8'
+[453] bbl.pm:757> INFO - Output to Falzoni.bbl
+[454] Biber.pm:130> WARN - legacy month field 'jul' in entry 'Barthel:high_orders' is not an integer - this will probably not sort properly.
+[454] Biber.pm:132> INFO - WARNINGS: 1

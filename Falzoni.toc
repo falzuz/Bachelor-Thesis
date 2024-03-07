@@ -1,0 +1,27 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\thispagestyle {empty}
+\contentsline {chapter}{Introduzione}{1}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}L'equazione di Schr\"odinger}{2}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Metodo}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Espansione di Lie-Trotter}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Soluzione numerica}{6}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Trasformata discreta di Fourier}{7}{subsection.2.2.1}%
+\contentsline {section}{\numberline {2.3}Conidizioni e vincoli sul sistema}{9}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Validazione del codice}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Particella libera}{11}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Pacchetto d'onde gaussiano}{11}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Evoluzione analitica}{12}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Oscillatore armonico}{13}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Stati coerenti}{14}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Potenziale di P\"oschl-Teller}{17}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Applicazioni}{20}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Buca finita di potenziale}{20}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Barriera coulombiana semplificata}{21}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Pacchetto gaussiano in potenziale armonico}{22}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Pacchetto gaussiano nel potenziale di P\"oschl-Teller}{23}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Potenziale dipendente dal tempo}{25}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Barriera infinita}{27}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Descrizione software}{29}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Algoritmo di simulazione}{30}{section.6.1}%
+\contentsline {chapter}{Conclusioni}{35}{Item.12}%

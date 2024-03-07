@@ -1,0 +1,66 @@
+\chapter*{Introduzione}
+\label{ch:introduzione}
+
+Quando si tratta l'equazione di Schr\"odinger, 
+\begin{equation}
+    \centering
+    i \hbar \frac{\partial}{\partial t} \psi (\vec{x}, t) = \hat{H} (\vec{x}, t) \psi (\vec{x}, t) \; \text{,}
+    \label{eq:Sc}
+\end{equation}
+in meccanica quantistica il numero di problemi che si possono risolvere in maniera esatta è piuttosto limitato. Per fare previsioni e ottenere risultati concreti, è quindi di fondamentale importanza utilizzare metodi di soluzione numerici.
+
+Si propone un metodo per la soluzione numerica dell'eq. (\ref{eq:Sc}) che consiste nell'applicazione ripetuta dell'espressione infinitesima dell'operatore di evoluzione temporale, approssimato tramite l'espansione di  Lie-Trotter.
+
+È stato sviluppato un software che consiste di tre componenti principali: 
+\begin{itemize} [nolistsep, leftmargin=1.5cm]
+    \item un ambiente grafico per poter gestire i parametri della simulazione,
+    \item l'algoritmo simulativo,
+    \item una serie di strumenti grafici per mostrare i risultati tramite animazioni.
+\end{itemize}
+Si è utilizzato come linguaggio di programmazione Python, ma parte dell'algoritmo è stato implementato in modo che fosse comapatibile con il compilatore Numba, questo per ridurre i tempi di simulazione. 
+
+Il metodo è stato innanzitutto validato tramite il confronto delle simulazioni con alcune soluzione esatte, tra cui la dinamica degli stati coerenti dell'oscillatore armonico e, nel potenziale di P\"oschl-Teller, l'evoluzione di un pacchetto gaussiano di autostati. In seguito, si è utilizzato il software per risolvere alcuni dei problemi monodimensionali generalmente proposti nei corsi di meccanica quantistica e altri di particolare interesse.
+
+\section{L'equazione di Schr\"odinger}
+\label{sec:idea}
+
+La più generica forma dell'equazione di Schr\"odinger risulta essere quella in eq. (\ref{eq:Sc}), dove $\hat{H}$ rappresenta l'operatore Hamiltoniano \footnote{Si ricorda che le grandezze riportate sotto il simbolo $\, \hat{ } \,$ rapprenatano degli operatori lineari in uno spazio di Hilbert}
+\begin{equation}
+    \centering
+    \hat{H} (\vec{x}, t) = \frac{1}{2m} (\hat{p} - q \hat{A}(\vec{x}, t) )^2 + \hat{V}(\vec{x}, t) - g \frac{q}{2m} \hat{S} \cdot \hat{B}(\vec{x},t) \; \text{.}
+    \label{eq:H}
+\end{equation}
+Di seguito, nei casi presi in esame, si utilizza una forma semplificata dell'eq. (\ref{eq:Sc}) e dell'operatore in eq. (\ref{eq:H}), poiché verranno utilizzati nella loro forma monodimensionale e senza considerare interazioni di natura elettromagnetica. Questa semplificazione non modifica il formalismo matematico utilizzato, ma permette di rendere più esplicative e chiare le espressioni che seguiranno; è dunque possibile riadattare tali espressioni e generalizzarle utilizzanado lo stesso procedimento. L'equazione risolta nelle simulazioni risulta essere
+\begin{equation}
+    \centering
+    i \hbar \frac{\partial}{\partial t} \psi (x, t) =  \hat{H} (\vec{x}, t) \psi (\vec{x}, t)   \qquad \text{con} \quad \hat{H} (\vec{x}, t) = \frac{\hat{p}^2}{2m}  + \hat{V}(\vec{x}, t) = \hat{T} + \hat{V} \; \text{,}
+    \label{eq:Sc_1D}
+\end{equation}
+dove si ricorda che, nella rappresentazione degli $x$, 
+\begin{equation}
+    \centering
+    \hat{p} = - i \hbar \frac{\partial } {\partial x} \; \text{.}
+    \label{eq:p}
+\end{equation}
+La soluzione formale dell'equaizone di Schr\"odinger fa uso dell'operatore unitario di evoluzione temporale 
+\begin{equation}
+    \centering
+    \psi (x,t) = \hat{U}(t, t_{0}) \, \psi (x, t_0) \quad \text{con} \quad \hat{U}(t, t_{0}) = T  \exp \left(\frac{-i}{\hbar} \int _{t_{0}} ^{t} dt' \; \hat{H}(x,t') \right) \; \text{.}
+    \label{eq:U}
+\end{equation}
+% Devo paarlare del motivo per cui viene semplicata
+Tale soluzione, non essendo esplicitamente analitica, non può essere risolta in maniera esatta se non in casi molto particolari.
+Se però si considera l'espressione infinititesima dell'operatore $\hat{U}$, risulta
+\begin{equation}
+    \centering
+    \hat{U}(t + \delta t, t) = \exp \left(\frac{-i}{\hbar} {H}(x,t) \delta t \right)  \; \text{,}
+    \label{eq:U_inf}
+\end{equation}
+che può essere applicato senza difficoltà alla funzione d'onda $\psi(x,t)$ il numero di volte necessarie a ottenere lo stesso risultato dell'eq. (\ref{eq:U}).
+L'unica difficoltà risiede nell'espansione dell'operatore, poiché in forma esplicita  
+\begin{equation}
+    \centering
+    \hat{U}(t + \delta t, t) =  \exp \left(\frac{-i}{\hbar} \delta t (\hat{V} + \hat{T}) \right) \; \text{,}
+    \label{eq:U_esplicit} 
+\end{equation}
+dove $\hat{V}$ e $\hat{T}$ sono due operatori che non commutano. Questo rende l'espansione dell'operatore $\hat{U}$ non banale.

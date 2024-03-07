@@ -1,0 +1,113 @@
+%Termine per la presentazione via mail all'indirizzo didattica.fisica@unimib.it della SINTESI della Relazione per la prova finale, in lingua italiana e inglese, da inviare in un unico file denominato "Cognome_matricola.pdf ". Il riassunto deve contenere obbligatoriamente i seguenti dati: cognome e nome - matricola - titolo della prova finale - relatore - correlatore - data della seduta della prova finale - corso di laurea di appartenenza - recapito telefonico. Nel riassunto in inglese deve essere tradotto anche il titolo.
+
+\documentclass{article}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2cm, right=2.5cm, centering, head=21.75 pt]{geometry}
+
+\usepackage{amsmath} % AMS Math Package
+\usepackage{enumitem}
+
+\begin{document}
+\begin{tabular}{l l l l l}
+    Cognome:    &    Falzoni     & \hspace{1cm} &   Relatore:     &   Carlo Oleari    \\
+    Nome:       &    Luca        & \hspace{1cm} &   Data:         &   24.10.2022      \\                
+    Matricola:  &    843968      & \hspace{1cm} &     &  \\
+    Telefono:   &    3348934924  & \hspace{1cm} &    C.d.L.:       &   Fisica 
+\end{tabular}
+
+
+\section*{Soluzione numerica dell'equazione di Schr\"odinger.}
+
+Quando si tratta l'equazione di Schr\"odinger, 
+\begin{equation}
+    \centering
+    i \hbar \frac{\partial}{\partial t} \psi (\vec{x}, t) = \hat{H} (\vec{x}, t) \psi (\vec{x}, t) \, \text{,}
+    \label{eq:Sc}
+\end{equation}
+in meccanica quantistica il numero di problemi che si possono risolvere in maniera esatta è piuttosto limitato. Per fare previsioni e ottenere risultati concreti è quindi di fondamentale importanza utilizzare metodi di soluzione numerici.
+Esistono diversi approcci all'eq. (\ref{eq:Sc}), ma tutti trovano fondamento nella soluzione formale 
+\begin{equation}
+    \centering
+    \psi (x,t) = \hat{U}(t, t_{0}) \, \psi (x, t_0) \quad \text{con}  \quad \hat{U}(t, t_{0}) = T  \, \exp \left(\frac{-i}{\hbar} \int _{t_{0}} ^{t} dt' \; \hat{H}(x,t') \right) \, \text{,}
+    \label{eq:U}
+\end{equation}
+dove $\hat{U}$ rappresenta l'operatore unitario di evoluzione temporale.
+Si propone un metodo per la soluzione numerica dell'eq. (\ref{eq:Sc}), che consiste nell'applicazione ripetuta dell'espressione infinitesima di $\hat{U}$ approssimato tramite l'espansione di  Lie-Trotter.
+Si utilizza l'espressione infinitesima
+\begin{equation}
+    \centering
+    \hat{U}(t + \delta t, \, t) = \exp \left(\frac{-i}{\hbar} {H}(x,t) \delta t \right) \, \text{,}
+    \label{eq:U_inf}
+\end{equation}
+poiché permette di svolgere senza difficoltà l'integrale presente nell'eq. (\ref{eq:U}).
+Mentre l'espansione di Lie-Trotter, tale per cui
+\begin{equation}
+    \centering
+    %\exp \left(\tau ({A} + {B})\right) 
+    e^{\tau ({A} + {B})}
+    = \prod _{j=1} ^{n} \; \exp \left( \tau A c_{j}\right)  \, \exp \left(\tau B d_{j}\right) + O(\tau^{n}) \, \text{,}
+    \label{eq:LT_expantion}
+\end{equation}
+ha un ruolo fondamentale poiché esplicitamente $\hat{H} = \hat{T} + \hat{V}$, dove $\hat{T}$ e $\hat{V}$ sono due operatori lineari che non commutano. Se venisse utilizzata la più comune espansione in serie di potenze, questa non conserverebbe la natura unitaria dell'operatore di evoluzione.
+Il formalismo appena descritto permette di risolvere l'eq. (\ref{eq:Sc}) per una funzione d'onda qualsiasi in un potenziale generico, anche dipendente dal tempo. Bisogna solo prestare attenzione alle condizioni imposte dal processo di discretizzazione, le quali restringono in ampiezza la scelta delle energie e dei momenti associati al sistema.
+
+È stato sviluppato un software che consiste di tre componenti principali: 
+\begin{itemize} [nolistsep, leftmargin=1.5cm]
+    \item un ambiente grafico per poter gestire i parametri della simulazione,
+    \item l'algoritmo simulativo,
+    \item una serie di strumenti grafici per mostrare i risultati tramite animazioni.
+\end{itemize}
+Si è utilizzato come linguaggio di programmazione Python, ma parte dell'algoritmo è stato implementato in modo che fosse compatibile con il compilatore Numba, questo per accorciare i tempi di simulazione. 
+
+Il metodo è stato innanzitutto validato tramite il confronto delle simulazioni con alcune soluzione esatte, tra cui la dinamica degli stati coerenti dell'oscillatore armonico e, nel potenziale di P\"oschl-Teller, l'evoluzione di un pacchetto gaussiano di autostati. In seguito si è utilizzato il software per risolvere alcuni dei problemi monodimensionali generalmente proposti nei corsi di meccanica quantistica e altri di particolare interesse, tra cui l'evoluzione di un pacchetto gaussiano di onde piane nel potenziale di P\"oschl-Teller e la soluzione per la barriera infinita.  
+
+Questo progetto può trovare applicazioni nel campo della didattica, infatti permette di avere una visualizzazione esaustiva della dinamica di un sistema quantistico, argomento spesso piusttosto astratto per chi si approccia alla materia. Inoltre è stata aggiunta la possibilità di far inserire all'utente arbitrari dati iniziali; questo permette di simulare l'evoluzione di un qualsivoglia sistema monodimensionale. 
+
+\newpage
+\section*{Numerical solution of the Schr\"odinger equation.}
+
+If you consider the quantum mechanics Schr\"odinger equation 
+\begin{equation}
+    \centering
+    i \hbar \frac{\partial}{\partial t} \psi (\vec{x}, t) = \hat{H} (\vec{x}, t) \psi (\vec{x}, t) \, \text{,}
+    \label{eq:Sc_e}
+\end{equation}
+there are very few problems that are exactly solvable. Thus, for having predictions and concrete results, it is very important to find numerical methods to solve the problem.
+There are several approaches to the eq. (\ref{eq:Sc_e}), but everyone starts from the formal solution 
+\begin{equation}
+    \centering
+    \psi (x,t) = \hat{U}(t, t_{0}) \, \psi (x, t_0)  \quad \text{where} \quad \hat{U}(t, t_{0}) = T  \, \exp \left(\frac{-i}{\hbar} \int _{t_{0}} ^{t} dt' \; \hat{H}(x,t') \right) \, \text{,}
+    \label{eq:U_e}
+\end{equation}
+where $\hat{U}$ is the unitary time evolution operator.
+It is proposed a numerical method based on several applications of the infinitesimal expression of the time evolution operator $\hat{U}$, approximated by the Lie-Trotter expantion.
+It is used the infinitesimal expression
+\begin{equation}
+    \centering
+    \hat{U}(t + \delta t, \, t) = \exp \left(\frac{-i}{\hbar} {H}(x,t) \delta t \right) \, \text{,}
+    \label{eq:U_inf_e}
+\end{equation}
+because allows to compute the integral without any struggle. 
+Whereas the Lie-Trotter expantion, where
+\begin{equation}
+    \centering
+    %\exp \left(\tau ({A} + {B})\right) 
+    e^{\tau ({A} + {B})}
+    = \prod _{j=1} ^{n} \; \exp \left( \tau A c_{j}\right)  \, \exp \left(\tau B d_{j}\right) + O(\tau^{n}) \, \text{,}
+    \label{eq:LT_expantion_e}
+\end{equation}
+has a fundamental role because $\hat{H} = \hat{T} + \hat{V}$, where  $\hat{T}$ and $\hat{V}$ are no-commutative linear operators. Infact the unitary property of the time evolution operator would have been lost, if it has been used the more common power seriers expansion.
+The formalism described above allows to solve the eq. (\ref{eq:Sc_e}) for any wave function in any potential, also for time dependent ones. It is nececcary just to pay attention on the conditions due to the discretization process, infact it imposes an amplitude range in energy and momentum values of the system.
+
+It has been developed a software that consists in three main parts:
+\begin{itemize} [nolistsep, leftmargin=1.5cm]
+    \item a graphical interface to set the simulation parameters,
+    \item the main simulation algorithm,
+    \item a group of graphical tools to show the results in animations.
+\end{itemize}
+It has been coded in Python, but some parts of the algorithm has been implemented to be compatible with Numba compiler. That reduces the simulation time.
+
+The method has been evaluated by comparing some numerical simulation with the corresponding exact solution, such as the coherent state of the armonic oscillator and the evolution of an eigenstates gaussian waves packet for the P\"oschl-Teller potential. Subsequently the software has been used to solve 1D problems usually proposed in quantum mechanic courses and others interesting, such as a gaussian plane wave packet in a P\"oschl-Teller potential and the solution for the infinte barrier.
+
+This project potentially could be a very useful academic tool, infact allows to exhaustively visualize the dynamic behavior of a quantum system, usually an abstract topic for new students. In addition it is possible for the user to set arbitary initial conditions in the software, thus it is possible to simulate the evolution for any 1D system.
+
+\end{document}
